@@ -1,0 +1,44 @@
+<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Sign in</h1>
+        <p class="text-xs-center">
+          <a [routerLink]="['/register']"> Need an account?</a>
+        </p>
+        <mc-backend-error-messages
+          *ngIf="backendErrors$ | async"
+          [backendErrors]="backendErrors$ | async"
+        ></mc-backend-error-messages>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <fieldset class="form-group">
+            <fieldset class="form-group">
+              <input
+                formControlName="email"
+                type="text"
+                class="form-control form-conrol-large"
+                placeholder="Email"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                formControlName="password"
+                type="password"
+                class="form-control form-conrol-large"
+                placeholder="Password"
+              />
+            </fieldset>
+            <button
+              class="btn btn-lg btn-primary pull-xs-right"
+              type="submit"
+              [disabled]="isSubmitting$ | async"
+            >
+              Sing in
+            </button>
+          </fieldset>
+        </form>
+        {{ form.invalid }}
+      </div>
+    </div>
+  </div>
+</div>
